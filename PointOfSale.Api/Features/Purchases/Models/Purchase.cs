@@ -12,10 +12,10 @@ public class Purchase
     public int Id { get; set; }
     
     public int SupplierId { get; set; }
-    public virtual People Supplier { get; set; }
+    public virtual People Supplier { get; set; } = null!;
     
     public int UserId { get; set; }
-    public virtual User User { get; set; }
+    public virtual User User { get; set; } = null!;
     
     public string TipoComprobante { get; set; } = null!;
     public string NumCompra { get; set; } = null!;

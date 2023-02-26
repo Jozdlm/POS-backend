@@ -9,7 +9,7 @@ public record ProductResponse
     public int min_stock { get; init; }
     public decimal selling_price { get; init; }
     public string img_url { get; init; } = null!;
-    public CategoryResponse category { get; init; }
+    public CategoryResponse category { get; init; } = null!;
     public bool active { get; init; }
 }
 
