@@ -21,7 +21,7 @@ public class SalesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<SaleResponse>> GetSales(DateTime? start, DateTime? end)
+    public async Task<IEnumerable<SaleHeaderApi>> GetSales(DateTime? start, DateTime? end)
     {
         if (start != null && end != null)
         {
@@ -29,15 +29,15 @@ public class SalesController : ControllerBase
                 (DateTime)start,
                 (DateTime)end
             );
-            return _mapper.Map<List<SaleResponse>>(salesByRange);
+            return _mapper.Map<List<SaleHeaderApi>>(salesByRange);
         }
 
         var sales = await _saleRepository.FindAll();
-        return _mapper.Map<List<SaleResponse>>(sales);
+        return _mapper.Map<List<SaleHeaderApi>>(sales);
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<SaleResponse>> GetSale(int id)
+    public async Task<ActionResult<SaleHeaderApi>> GetSale(int id)
     {
         var sale = await _saleRepository.FindById(id);
 
@@ -46,7 +46,7 @@ public class SalesController : ControllerBase
             return NotFound();
         }
 
-        return _mapper.Map<SaleResponse>(sale);
+        return _mapper.Map<SaleHeaderApi>(sale);
     }
 
     [HttpGet("today")]

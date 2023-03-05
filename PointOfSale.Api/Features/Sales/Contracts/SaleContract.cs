@@ -42,3 +42,19 @@ public record SaleItemDto
     public decimal discount {get; init;}
     public decimal tax {get; init;}
 }
+
+public record SaleHeaderApi
+{
+    public int id { get; init; }
+    public DateTime date { get; init; }
+
+    public int customer_id {get; init;}
+    public string customer_name { get; init; } = null!;
+
+    public int user_id {get; init;}
+    public string user_name { get; init; } = null!;
+    
+    public string receipt_type { get; init; } = string.Empty;
+    public decimal total { get; init; }
+    public string status { get; init; } = string.Empty;
+}
