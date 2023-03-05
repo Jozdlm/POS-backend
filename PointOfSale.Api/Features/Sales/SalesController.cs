@@ -25,10 +25,13 @@ public class SalesController : ControllerBase
     {
         if (start != null && end != null)
         {
-            var salesByRange = await _saleRepository.FindByDateRange((DateTime)start, (DateTime)end);
+            var salesByRange = await _saleRepository.FindByDateRange(
+                (DateTime)start,
+                (DateTime)end
+            );
             return _mapper.Map<List<SaleResponse>>(salesByRange);
         }
-        
+
         var sales = await _saleRepository.FindAll();
         return _mapper.Map<List<SaleResponse>>(sales);
     }
@@ -50,5 +53,18 @@ public class SalesController : ControllerBase
     public async Task<ActionResult<decimal>> GetSalesOfToday(DateTime dateTime)
     {
         return await _saleRepository.GetTotalByDay(dateTime);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> CreateSale(SaleHeaderDto saleHeaderDto)
+    {
+        var sale = _mapper.Map<Sale>(saleHeaderDto);
+        var result = await _saleRepository.Add(sale);
+
+        if (result == 0)
+        {
+            return BadRequest("Ha ocurrido un error al intentar añadir una venta");
+        }
+        return Ok("Venta creada correctamente");
     }
 }

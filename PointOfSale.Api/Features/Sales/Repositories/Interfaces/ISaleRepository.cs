@@ -8,4 +8,5 @@ public interface ISaleRepository
     public Task<Sale?> FindById(int id);
     public Task<decimal> GetTotalByDay(DateTime dateTime);
     public Task<IEnumerable<Sale>> FindByDateRange(DateTime start, DateTime end);
+    public Task<int> Add(Sale sale);
 }

@@ -32,15 +32,21 @@ public class SaleRepository : ISaleRepository
     public async Task<decimal> GetTotalByDay(DateTime dateTime)
     {
         return await _dbContext.Sale
-            .Where(x => x.Date == dateTime)
+            .Where(x => x.DateTime == dateTime)
             .Select(x => x.Total).SumAsync();
     }
 
     public async Task<IEnumerable<Sale>> FindByDateRange(DateTime start, DateTime end)
     {
         return await _dbContext.Sale
-            .Where(x => x.Date >= start && x.Date <= end)
+            .Where(x => x.DateTime >= start && x.DateTime <= end)
             .Include(x => x.User)
             .Include(x => x.Customer).ToListAsync();
+    }
+
+    public async Task<int> Add(Sale sale)
+    {
+        _dbContext.Add(sale);
+        return await _dbContext.SaveChangesAsync();
     }
 }
