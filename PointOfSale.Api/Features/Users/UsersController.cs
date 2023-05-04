@@ -1,6 +1,5 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using PointOfSale.Api.Features.Auth.Services;
 using PointOfSale.Api.Features.Users.Contracts;
 using PointOfSale.Api.Features.Users.Models;
 using PointOfSale.Api.Features.Users.Repositories;
@@ -12,13 +11,11 @@ namespace PointOfSale.Api.Features.Users;
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
-    private readonly IAuthService _authService;
     private readonly IMapper _mapper;
 
-    public UsersController(IUserRepository userRepository, IMapper mapper, IAuthService authService)
+    public UsersController(IUserRepository userRepository, IMapper mapper)
     {
         _userRepository = userRepository;
-        _authService = authService;
         _mapper = mapper;
     }
 
@@ -45,9 +42,7 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateUser(string password)
     {
-        var hashedPassword = _authService.HashPassword(password);
-
-        return Ok(hashedPassword);
+        return Ok(password);
     }
 
     [HttpPut("{id:int}")]

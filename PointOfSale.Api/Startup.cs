@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Core;
-using PointOfSale.Api.Features.Auth.Services;
 using PointOfSale.Api.Features.Products.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
@@ -44,9 +43,6 @@ public class Startup
         services.AddScoped<ISaleRepository, SaleRepository>();
         services.AddScoped<ISaleItemRepository, SaleItemRepository>();
         services.AddScoped<IKardexRepository, KardexRepository>();
-
-        //Dependency Injection for Services
-        services.AddScoped<IAuthService, AuthService>();
 
         services.AddCors(options =>
         {
