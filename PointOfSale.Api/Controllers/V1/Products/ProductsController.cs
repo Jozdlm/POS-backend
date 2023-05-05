@@ -16,7 +16,11 @@ public class ProductsController : ControllerBase
     private readonly IMapper _mapper;
     private readonly IKardexRepository _kardexRepository;
 
-    public ProductsController(IProductRepository repository, IMapper mapper, IKardexRepository kardexRepository)
+    public ProductsController(
+        IProductRepository repository,
+        IMapper mapper,
+        IKardexRepository kardexRepository
+    )
     {
         _repository = repository;
         _mapper = mapper;
@@ -33,7 +37,7 @@ public class ProductsController : ControllerBase
         }
 
         var products = await _repository.FindAll();
-        
+
         return _mapper.Map<List<ProductResponse>>(products);
     }
 
@@ -49,7 +53,8 @@ public class ProductsController : ControllerBase
     {
         var product = await _repository.FindById(id);
 
-        if (product == null) return NotFound($"El producto con el id {id} no fue encontrado");
+        if (product == null)
+            return NotFound($"El producto con el id {id} no fue encontrado");
 
         return _mapper.Map<ProductResponse>(product);
     }
@@ -62,10 +67,12 @@ public class ProductsController : ControllerBase
 
         if (result == 0)
         {
-            return BadRequest("Ha ocurrido un error al intentar crear un producto, comuniquese con sistemas");
+            return BadRequest(
+                "Ha ocurrido un error al intentar crear un producto, comuniquese con sistemas"
+            );
         }
-        
-        return Ok("Producto creado con exito");
+
+        return Ok(new { message = "Producto creado con exito" });
     }
 
     [HttpPut("{id:int}")]
@@ -85,10 +92,31 @@ public class ProductsController : ControllerBase
 
         if (result == 0)
         {
-            return BadRequest("Ha ocurrido un error al intentar actualizar el producto, comuniquese con sistemas");
+            return BadRequest(
+                "Ha ocurrido un error al intentar actualizar el producto, comuniquese con sistemas"
+            );
         }
 
         return Ok("Producto actualizado correctamente");
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult> DeleteProduct(int id) { 
+        var alreadyExists = await _repository.AlreadyExists(id);
+
+        if(!alreadyExists)
+        {
+            return NotFound();
+        }
+
+        var result = await _repository.Delete(id);
+
+        if(result == 0)
+        {
+            return BadRequest();
+        }
+
+        return Ok(new {message = "Producto eliminado correctamente"});
     }
 
     [HttpGet("kardex")]
