@@ -60,4 +60,10 @@ public class ProductRepository : IProductRepository
         _dbContext.Update(product);
         return await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<int> Delete(int id)
+    {
+        _dbContext.Remove(new Product() {Id = id});
+        return await _dbContext.SaveChangesAsync();
+    }
 }
