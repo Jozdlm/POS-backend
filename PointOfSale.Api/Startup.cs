@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Core;
+using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Products.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
 using PointOfSale.Api.Features.Users.Repositories;
+using PointOfSale.Api.Infrastructure.Repositories;
 using PointOfSale.Api.Shared.Repositories;
 using PointOfSale.Api.Shared.Repositories.Interfaces;
 
@@ -42,6 +44,7 @@ public class Startup
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ISaleRepository, SaleRepository>();
         services.AddScoped<ISaleItemRepository, SaleItemRepository>();
+        services.AddScoped<IPurchaseItemRepository, PurchaseItemRepository>();
         services.AddScoped<IKardexRepository, KardexRepository>();
 
         services.AddCors(options =>
