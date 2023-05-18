@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PointOfSale.Api.Features.Products.Contracts;
 using PointOfSale.Api.Features.Products.Models;
 using PointOfSale.Api.Features.Products.Repositories;
+using PointOfSale.Api.Features.Sales.Models;
+using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
 using PointOfSale.Api.Shared.Models;
 using PointOfSale.Api.Shared.Repositories.Interfaces;
 
@@ -14,17 +16,17 @@ public class ProductsController : ControllerBase
 {
     private readonly IProductRepository _repository;
     private readonly IMapper _mapper;
-    private readonly IKardexRepository _kardexRepository;
+    private readonly ISaleItemRepository _saleItemRepository;
 
     public ProductsController(
         IProductRepository repository,
         IMapper mapper,
-        IKardexRepository kardexRepository
+        ISaleItemRepository saleItemRepository
     )
     {
         _repository = repository;
         _mapper = mapper;
-        _kardexRepository = kardexRepository;
+        _saleItemRepository = saleItemRepository;
     }
 
     [HttpGet]
@@ -120,9 +122,14 @@ public class ProductsController : ControllerBase
         return Ok(new { message = "Producto eliminado correctamente" });
     }
 
-    [HttpGet("kardex")]
-    public async Task<IEnumerable<ProductKardex>> GetKardex()
+    [HttpGet("kardex/{id:int}")]
+    public async Task<IActionResult> GetProductKardex(int id)
     {
-        return await _kardexRepository.GetKardex();
+        var saleItems = await _saleItemRepository.FindSaleItemsByProduct(id);
+        var response = new {
+            sale_items = saleItems
+        };
+
+        return Ok(response);
     }
 }
