@@ -1,12 +1,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Products.Contracts;
 using PointOfSale.Api.Features.Products.Models;
 using PointOfSale.Api.Features.Products.Repositories;
-using PointOfSale.Api.Features.Sales.Models;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
-using PointOfSale.Api.Shared.Models;
-using PointOfSale.Api.Shared.Repositories.Interfaces;
 
 namespace PointOfSale.Api.Features.Products;
 
@@ -17,16 +15,19 @@ public class ProductsController : ControllerBase
     private readonly IProductRepository _repository;
     private readonly IMapper _mapper;
     private readonly ISaleItemRepository _saleItemRepository;
+    private readonly IPurchaseItemRepository _purchaseItemRepository;
 
     public ProductsController(
         IProductRepository repository,
         IMapper mapper,
-        ISaleItemRepository saleItemRepository
+        ISaleItemRepository saleItemRepository,
+        IPurchaseItemRepository purchaseItemRepository
     )
     {
         _repository = repository;
         _mapper = mapper;
         _saleItemRepository = saleItemRepository;
+        _purchaseItemRepository = purchaseItemRepository;
     }
 
     [HttpGet]
@@ -126,8 +127,11 @@ public class ProductsController : ControllerBase
     public async Task<IActionResult> GetProductKardex(int id)
     {
         var saleItems = await _saleItemRepository.FindSaleItemsByProduct(id);
+        var purchaseItems = await _purchaseItemRepository.FindPurchaseItemsByProduct(id);
+
         var response = new {
-            sale_items = saleItems
+            sale_items = saleItems,
+            purchase_items = purchaseItems
         };
 
         return Ok(response);
