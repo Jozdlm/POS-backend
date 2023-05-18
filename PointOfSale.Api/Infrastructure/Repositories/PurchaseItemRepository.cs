@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Core;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Domain.Interfaces;
@@ -13,8 +14,9 @@ public class PurchaseItemRepository : IPurchaseItemRepository
         _dbContext = dbContext;
     }
 
-    public Task<IEnumerable<PurchaseItem>> FindPurchaseItemsByProduct(int productId)
+    public async Task<IEnumerable<PurchaseItem>> FindPurchaseItemsByProduct(int productId)
     {
-        throw new NotImplementedException();
+        return await _dbContext.PurchaseItem
+            .Where(x => x.ProductId == productId).ToListAsync();
     }
 }
