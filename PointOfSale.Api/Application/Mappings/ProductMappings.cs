@@ -8,6 +8,11 @@ public class ProductMappings : Profile
 {
     public ProductMappings()
     {
+        ProductKardexMap();
+    }
+
+    public void ProductKardexMap()
+    {
         CreateMap<PurchaseItem, ProductKardex>()
             .ForMember(dest => dest.item_id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.type, opt => opt.MapFrom(src => "Compra"))
