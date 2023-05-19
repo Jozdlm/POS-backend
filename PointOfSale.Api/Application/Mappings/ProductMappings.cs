@@ -37,5 +37,6 @@ public class ProductMappings : Profile
     public void ProductCategoriesMap()
     {
         CreateMap<CategoryDto, ProductCategory>().ReverseMap();
+        CreateMap<ProductCategory, CategoryResponse>();
     }
 }
