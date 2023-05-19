@@ -1,6 +1,7 @@
 using AutoMapper;
 using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Entities;
+using PointOfSale.Api.Features.Products.Contracts;
 
 namespace PointOfSale.Api.Application.Mappings;
 
@@ -9,6 +10,7 @@ public class ProductMappings : Profile
     public ProductMappings()
     {
         ProductKardexMap();
+        ProductCategoriesMap();
     }
 
     public void ProductKardexMap()
@@ -30,5 +32,10 @@ public class ProductMappings : Profile
                 dest => dest.value,
                 opt => opt.MapFrom(src => src.Quantity * src.SellingPrice)
             );
+    }
+
+    public void ProductCategoriesMap()
+    {
+        CreateMap<CategoryDto, ProductCategory>().ReverseMap();
     }
 }
