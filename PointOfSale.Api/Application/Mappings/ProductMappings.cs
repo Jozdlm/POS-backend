@@ -16,5 +16,14 @@ public class ProductMappings : Profile
                 dest => dest.value,
                 opt => opt.MapFrom(src => src.Quantity * src.PurchasePrice)
             );
+
+        CreateMap<SaleItem, ProductKardex>()
+            .ForMember(dest => dest.item_id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.type, opt => opt.MapFrom(src => "Venta"))
+            .ForMember(dest => dest.quantity, opt => opt.MapFrom(src => src.Quantity))
+            .ForMember(
+                dest => dest.value,
+                opt => opt.MapFrom(src => src.Quantity * src.SellingPrice)
+            );
     }
 }
