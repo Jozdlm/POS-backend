@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PointOfSale.Api.Features.Products.Models;
+namespace PointOfSale.Api.Domain.Entities;
 
 [Table("product_categories")]
 public class ProductCategory
