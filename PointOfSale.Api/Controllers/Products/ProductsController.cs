@@ -1,12 +1,13 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Products.Contracts;
 using PointOfSale.Api.Features.Products.Models;
 using PointOfSale.Api.Features.Products.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
 
-namespace PointOfSale.Api.Features.Products;
+namespace PointOfSale.Api.Controllers.Products;
 
 [ApiController]
 [Route("api/products")]
@@ -129,11 +130,10 @@ public class ProductsController : ControllerBase
         var saleItems = await _saleItemRepository.FindSaleItemsByProduct(id);
         var purchaseItems = await _purchaseItemRepository.FindPurchaseItemsByProduct(id);
 
-        var response = new {
-            sale_items = saleItems,
-            purchase_items = purchaseItems
-        };
+        var kardexItems = saleItems
+            .Select(saleItem => _mapper.Map<ProductKardex>(saleItem))
+            .Concat(purchaseItems.Select(purchaseItem => _mapper.Map<ProductKardex>(purchaseItem)));
 
-        return Ok(response);
+        return Ok(kardexItems);
     }
 }
