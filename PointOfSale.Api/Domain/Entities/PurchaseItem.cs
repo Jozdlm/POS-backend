@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using PointOfSale.Api.Features.Products.Models;
 
 namespace PointOfSale.Api.Domain.Entities;
 

@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Features.People.Models;
-using PointOfSale.Api.Features.Products.Models;
-using PointOfSale.Api.Features.Sales.Models;
 using PointOfSale.Api.Features.Users.Models;
 using PointOfSale.Api.Models;
 using PointOfSale.Api.Shared.Models;
@@ -22,7 +20,7 @@ public class PointOfSaleContext : DbContext
     public DbSet<PurchaseItem> PurchaseItem => Set<PurchaseItem>();
 
     public DbSet<People> Person => Set<People>();
-    
+
     // Views
     public DbSet<ViewKardex> ViewKardex => Set<ViewKardex>();
 

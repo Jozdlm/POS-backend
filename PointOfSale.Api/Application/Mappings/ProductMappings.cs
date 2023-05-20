@@ -2,7 +2,6 @@ using AutoMapper;
 using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Features.Products.Contracts;
-using PointOfSale.Api.Features.Products.Models;
 
 namespace PointOfSale.Api.Application.Mappings;
 
