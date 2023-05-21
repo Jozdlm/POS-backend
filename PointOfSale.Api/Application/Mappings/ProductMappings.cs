@@ -48,6 +48,8 @@ public class ProductMappings : Profile
         CreateMap<SaleItem, ProductKardex>()
             .ForMember(dest => dest.item_id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.operation_type, opt => opt.MapFrom(src => "Venta"))
+            .ForMember(dest => dest.document_num, opt => opt.MapFrom(src => src.Sale.Id))
+            .ForMember(dest => dest.date_time, opt => opt.MapFrom(src => src.Sale.DateTime))
             .ForMember(dest => dest.quantity, opt => opt.MapFrom(src => src.Quantity))
             .ForMember(
                 dest => dest.value,
