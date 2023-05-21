@@ -1,6 +1,6 @@
 ﻿using PointOfSale.Api.Domain.Entities;
 
-namespace PointOfSale.Api.Features.Sales.Repositories.Interfaces;
+namespace PointOfSale.Api.Domain.Interfaces;
 
 public interface ISaleItemRepository
 {
