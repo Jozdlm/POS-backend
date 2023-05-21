@@ -17,6 +17,7 @@ public class PurchaseItemRepository : IPurchaseItemRepository
     public async Task<IEnumerable<PurchaseItem>> FindPurchaseItemsByProduct(int productId)
     {
         return await _dbContext.PurchaseItem
+            .Include(x => x.Purchase)
             .Where(x => x.ProductId == productId).ToListAsync();
     }
 }
