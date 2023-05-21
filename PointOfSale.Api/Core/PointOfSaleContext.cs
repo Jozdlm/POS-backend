@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Features.People.Models;
 using PointOfSale.Api.Features.Users.Models;
-using PointOfSale.Api.Models;
 using PointOfSale.Api.Shared.Models;
 
 namespace PointOfSale.Api.Core;

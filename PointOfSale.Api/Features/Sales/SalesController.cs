@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Features.Sales.Contracts;
-using PointOfSale.Api.Features.Sales.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
-using PointOfSale.Api.Models;
 
 namespace PointOfSale.Api.Features.Sales;
 
@@ -65,6 +64,7 @@ public class SalesController : ControllerBase
         {
             return BadRequest("Ha ocurrido un error al intentar añadir una venta");
         }
+
         return Ok("Venta creada correctamente");
     }
 }

@@ -1,4 +1,5 @@
-﻿using PointOfSale.Api.Models;
+﻿
+using PointOfSale.Api.Domain.Entities;
 
 namespace PointOfSale.Api.Features.Sales.Repositories.Interfaces;
 

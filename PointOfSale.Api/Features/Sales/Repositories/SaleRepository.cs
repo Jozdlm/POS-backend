@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Core;
+using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
-using PointOfSale.Api.Models;
 
 namespace PointOfSale.Api.Features.Sales.Repositories;
 

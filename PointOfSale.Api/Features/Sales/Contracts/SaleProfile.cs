@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using PointOfSale.Api.Features.Sales.Models;
-using PointOfSale.Api.Models;
+using PointOfSale.Api.Domain.Entities;
 
 namespace PointOfSale.Api.Features.Sales.Contracts;
 
