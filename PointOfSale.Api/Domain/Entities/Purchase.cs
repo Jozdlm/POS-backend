@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using PointOfSale.Api.Features.People.Models;
 using PointOfSale.Api.Features.Users.Models;
 
-namespace PointOfSale.Api.Models;
+namespace PointOfSale.Api.Domain.Entities;
 
 [Table("purchases")]
 public class Purchase
