@@ -36,7 +36,7 @@ public class ProductMappings : Profile
     {
         CreateMap<PurchaseItem, ProductKardex>()
             .ForMember(dest => dest.item_id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.type, opt => opt.MapFrom(src => "Compra"))
+            .ForMember(dest => dest.operation_type, opt => opt.MapFrom(src => "Compra"))
             .ForMember(dest => dest.quantity, opt => opt.MapFrom(src => src.Quantity))
             .ForMember(
                 dest => dest.value,
@@ -45,7 +45,7 @@ public class ProductMappings : Profile
 
         CreateMap<SaleItem, ProductKardex>()
             .ForMember(dest => dest.item_id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.type, opt => opt.MapFrom(src => "Venta"))
+            .ForMember(dest => dest.operation_type, opt => opt.MapFrom(src => "Venta"))
             .ForMember(dest => dest.quantity, opt => opt.MapFrom(src => src.Quantity))
             .ForMember(
                 dest => dest.value,
