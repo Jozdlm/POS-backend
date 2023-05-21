@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Core;
-using PointOfSale.Api.Features.Sales.Models;
-using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
+using PointOfSale.Api.Domain.Entities;
+using PointOfSale.Api.Domain.Interfaces;
 
-namespace PointOfSale.Api.Features.Sales.Repositories;
+namespace PointOfSale.Api.Infrastructure.Repositories;
 
 public class SaleItemRepository : ISaleItemRepository
 {
@@ -19,5 +19,11 @@ public class SaleItemRepository : ISaleItemRepository
         return await _dbContext.SaleItem
             .Include(x => x.Product)
             .Where(x => x.SaleId == saleId).ToListAsync();
+    }
+
+    public async Task<IEnumerable<SaleItem>> FindSaleItemsByProduct(int productId)
+    {
+        return await _dbContext.SaleItem
+            .Where(x => x.ProductId == productId).ToListAsync();
     }
 }
