@@ -10,6 +10,8 @@ public class Purchase
 {
     [Key]
     public int Id { get; set; }
+
+    public string DocumentNumber { get; set; } = string.Empty;
     
     public int SupplierId { get; set; }
     public virtual People Supplier { get; set; } = null!;
@@ -19,7 +21,6 @@ public class Purchase
     
     public string TipoComprobante { get; set; } = null!;
     public string NumCompra { get; set; } = null!;
-    public string NumComprobante { get; set; } = null!;
     public DateTime FechaHora { get; set; }
     public decimal Tax { get; set; }
     public decimal TotalCompra { get; set; }
