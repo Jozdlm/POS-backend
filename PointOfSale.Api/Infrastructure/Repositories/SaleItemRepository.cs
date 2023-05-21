@@ -24,6 +24,7 @@ public class SaleItemRepository : ISaleItemRepository
     public async Task<IEnumerable<SaleItem>> FindSaleItemsByProduct(int productId)
     {
         return await _dbContext.SaleItem
+            .Include(x => x.Sale)
             .Where(x => x.ProductId == productId).ToListAsync();
     }
 }
