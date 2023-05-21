@@ -4,16 +4,16 @@ using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Features.Products.Contracts;
 using PointOfSale.Api.Features.Products.Repositories;
 
-namespace PointOfSale.Api.Features.Products;
+namespace PointOfSale.Api.Controllers.Products;
 
 [ApiController]
 [Route("api/products-categories")]
-public class ProductsCategoriesController : ControllerBase
+public class CategoriesController : ControllerBase
 {
     private readonly ICategoryRepository _categoryRepository;
     private readonly IMapper _mapper;
 
-    public ProductsCategoriesController(ICategoryRepository categoryRepository, IMapper mapper)
+    public CategoriesController(ICategoryRepository categoryRepository, IMapper mapper)
     {
         _categoryRepository = categoryRepository;
         _mapper = mapper;
