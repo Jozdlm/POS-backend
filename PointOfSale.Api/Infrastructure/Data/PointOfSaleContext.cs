@@ -4,7 +4,7 @@ using PointOfSale.Api.Features.People.Models;
 using PointOfSale.Api.Features.Users.Models;
 using PointOfSale.Api.Shared.Models;
 
-namespace PointOfSale.Api.Core;
+namespace PointOfSale.Api.Infrastructure.Data;
 
 public class PointOfSaleContext : DbContext
 {

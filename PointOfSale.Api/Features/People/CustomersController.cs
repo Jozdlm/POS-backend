@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PointOfSale.Api.Core;
-using PointOfSale.Api.Features.People.Models;
+using PointOfSale.Api.Infrastructure.Data;
 
 namespace PointOfSale.Api.Features.People;
 

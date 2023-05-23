@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PointOfSale.Api.Core;
+using PointOfSale.Api.Infrastructure.Data;
 using PointOfSale.Api.Shared.Models;
 using PointOfSale.Api.Shared.Repositories.Interfaces;
 
@@ -14,7 +14,7 @@ public class KardexRepository : IKardexRepository
         _dbContext = dbContext;
     }
     
-    public async Task<IEnumerable<ProductKardex>> GetKardex()
+    public async Task<IEnumerable<ViewKardex>> GetKardex()
     {
         return await _dbContext.ViewKardex.ToListAsync();
     }
