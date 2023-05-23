@@ -1,8 +1,9 @@
 using PointOfSale.Api.Core;
 using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Domain.Entities;
+using PointOfSale.Api.Domain.Interfaces;
 
-namespace PointOfSale.Api.Features.Products.Repositories;
+namespace PointOfSale.Api.Infrastructure.Repositories;
 
 public class CategoryRepository : ICategoryRepository
 {

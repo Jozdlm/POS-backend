@@ -1,8 +1,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using PointOfSale.Api.Domain.Entities;
+using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Products.Contracts;
-using PointOfSale.Api.Features.Products.Repositories;
 
 namespace PointOfSale.Api.Controllers.Products;
 
