@@ -1,5 +1,5 @@
 
-namespace PointOfSale.Api.Features.Products.Contracts;
+namespace PointOfSale.Api.Application.Contracts;
 
 public record ProductResponse
 {

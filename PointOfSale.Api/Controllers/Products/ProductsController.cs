@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Domain.Interfaces;
-using PointOfSale.Api.Features.Products.Contracts;
 
 namespace PointOfSale.Api.Controllers.Products;
 
