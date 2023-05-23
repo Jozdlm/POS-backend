@@ -5,7 +5,6 @@ using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Products.Contracts;
 using PointOfSale.Api.Features.Products.Repositories;
-using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
 
 namespace PointOfSale.Api.Controllers.Products;
 
@@ -58,7 +57,7 @@ public class ProductsController : ControllerBase
         var product = await _repository.FindById(id);
 
         if (product == null)
-            return NotFound($"El producto con el id {id} no fue encontrado");
+            return NotFound(new { message = $"El producto con el id {id} no fue encontrado" });
 
         return _mapper.Map<ProductResponse>(product);
     }
@@ -72,7 +71,10 @@ public class ProductsController : ControllerBase
         if (result == 0)
         {
             return BadRequest(
-                "Ha ocurrido un error al intentar crear un producto, comuniquese con sistemas"
+                new
+                {
+                    message = "Ha ocurrido un error al intentar crear un producto, comuniquese con sistemas"
+                }
             );
         }
 
@@ -97,7 +99,10 @@ public class ProductsController : ControllerBase
         if (result == 0)
         {
             return BadRequest(
-                "Ha ocurrido un error al intentar actualizar el producto, comuniquese con sistemas"
+                new
+                {
+                    message = "Ha ocurrido un error al intentar actualizar el producto, comuniquese con sistemas"
+                }
             );
         }
 
