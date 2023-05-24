@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using PointOfSale.Api.Features.Users.Models;
+using PointOfSale.Api.Domain.Entities;
+using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Infrastructure.Data;
 
-namespace PointOfSale.Api.Features.Users.Repositories;
+namespace PointOfSale.Api.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    private PointOfSaleContext _dbContext;
+    private readonly PointOfSaleContext _dbContext;
 
     public UserRepository(PointOfSaleContext dbContext)
     {

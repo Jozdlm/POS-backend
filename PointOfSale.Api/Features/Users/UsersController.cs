@@ -1,8 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Users.Contracts;
-using PointOfSale.Api.Features.Users.Models;
-using PointOfSale.Api.Features.Users.Repositories;
 
 namespace PointOfSale.Api.Features.Users;
 
@@ -37,33 +36,5 @@ public class UsersController : ControllerBase
         }
 
         return _mapper.Map<UserResponse>(user);
-    }
-
-    [HttpPost]
-    public async Task<ActionResult> CreateUser(string password)
-    {
-        return Ok(password);
-    }
-
-    [HttpPut("{id:int}")]
-    public async Task<ActionResult> UpdateUser(int id, UserDto userDto)
-    {
-        var alreadyExists = await _userRepository.AlreadyExists(id);
-
-        if(!alreadyExists)
-        {
-            return NotFound();
-        }
-
-        var user = _mapper.Map<User>(userDto);
-        user.Id = id;
-
-        var result = await _userRepository.UpdateUser(user);
-
-        if(result == 0) {
-            return BadRequest();
-        }
-
-        return Ok("Usuario actualizado correctamente");
     }
 }

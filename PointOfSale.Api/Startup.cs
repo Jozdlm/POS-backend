@@ -2,7 +2,6 @@
 using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Sales.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
-using PointOfSale.Api.Features.Users.Repositories;
 using PointOfSale.Api.Infrastructure.Data;
 using PointOfSale.Api.Infrastructure.Repositories;
 using PointOfSale.Api.Shared.Repositories;
@@ -48,7 +47,8 @@ public class Startup
 
         services.AddCors(options =>
         {
-            string[] origins = {
+            string[] origins =
+            {
                 "http://localhost:4200",
                 "http://localhost:8000",
                 "http://localhost:63345",

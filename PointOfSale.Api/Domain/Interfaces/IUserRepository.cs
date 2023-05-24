@@ -1,6 +1,6 @@
-using PointOfSale.Api.Features.Users.Models;
+using PointOfSale.Api.Domain.Entities;
 
-namespace PointOfSale.Api.Features.Users.Repositories;
+namespace PointOfSale.Api.Domain.Interfaces;
 
 public interface IUserRepository
 {
