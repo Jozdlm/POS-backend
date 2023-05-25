@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using PointOfSale.Api.Features.Sales.Contracts;
-using PointOfSale.Api.Features.Sales.Models;
-using PointOfSale.Api.Features.Sales.Repositories;
-using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
+using PointOfSale.Api.Application.Contracts;
+using PointOfSale.Api.Domain.Interfaces;
 
 namespace PointOfSale.Api.Features.Sales;
 
@@ -21,9 +19,9 @@ public class SaleItemsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<SaleItemDto>> GetItems(int saleId)
+    public async Task<IEnumerable<SaleItemApi>> GetItems(int saleId)
     {
         var results = await _itemRepository.FindSaleItems(saleId);
-        return _mapper.Map<List<SaleItemDto>>(results);
+        return _mapper.Map<List<SaleItemApi>>(results);
     }
 }

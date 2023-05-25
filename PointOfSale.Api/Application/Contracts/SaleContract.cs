@@ -1,4 +1,4 @@
-﻿namespace PointOfSale.Api.Features.Sales.Contracts;
+﻿namespace PointOfSale.Api.Application.Contracts;
 
 public record SaleResponse
 {
@@ -19,6 +19,7 @@ public record SaleItemApi
     public int quantity { get; init; }
     public decimal selling_price { get; init; }
     public decimal discount { get; init; }
+    public decimal tax {get; init; }
     public decimal ammount { get; init; }
 }
 
