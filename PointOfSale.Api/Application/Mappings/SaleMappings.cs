@@ -8,10 +8,22 @@ public class SaleMappings : Profile
 {
     public SaleMappings()
     {
-       SaleItemMap();
+        SaleHeaderMap();
+        SaleItemMap();
     }
 
-    public void SaleItemMap ()
+    public void SaleHeaderMap()
+    {
+        CreateMap<Sale, SaleHeaderApi>()
+            .ForMember(dest => dest.date, opt => opt.MapFrom(src => src.DateTime))
+            .ForMember(dest => dest.customer_id, opt => opt.MapFrom(src => src.Customer.Id))
+            .ForMember(dest => dest.customer_name, opt => opt.MapFrom(src => src.Customer.Name))
+            .ForMember(dest => dest.user_id, opt => opt.MapFrom(src => src.User.Id))
+            .ForMember(dest => dest.user_name, opt => opt.MapFrom(src => src.User.Username))
+            .ForMember(dest => dest.receipt_type, opt => opt.MapFrom(src => src.ReceiptType));
+    }
+
+    public void SaleItemMap()
     {
         CreateMap<SaleItem, SaleItemApi>()
             .ForMember(dest => dest.product_id, opt => opt.MapFrom(src => src.Product.Id))
