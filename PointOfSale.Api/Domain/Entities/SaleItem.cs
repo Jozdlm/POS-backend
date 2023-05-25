@@ -19,5 +19,8 @@ public class SaleItem
     public decimal PurchasePrice { get; set; }
     public decimal SellingPrice { get; set; }
     public decimal Discount { get; set; }
-    public decimal Tax { get; set; }
+
+    public decimal Tax => SellingPrice * 0.12m;
+    public decimal Total => (Quantity * SellingPrice) + Tax;
+    public decimal Earned => (SellingPrice - PurchasePrice) * Quantity;
 }
