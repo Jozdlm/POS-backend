@@ -4,8 +4,6 @@ using PointOfSale.Api.Features.Sales.Repositories;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
 using PointOfSale.Api.Infrastructure.Data;
 using PointOfSale.Api.Infrastructure.Repositories;
-using PointOfSale.Api.Shared.Repositories;
-using PointOfSale.Api.Shared.Repositories.Interfaces;
 
 namespace PointOfSale.Api;
 
@@ -43,7 +41,6 @@ public class Startup
         services.AddScoped<ISaleRepository, SaleRepository>();
         services.AddScoped<ISaleItemRepository, SaleItemRepository>();
         services.AddScoped<IPurchaseItemRepository, PurchaseItemRepository>();
-        services.AddScoped<IKardexRepository, KardexRepository>();
 
         services.AddCors(options =>
         {
@@ -57,10 +54,7 @@ public class Startup
 
             options.AddPolicy(
                 name: DevSpecificOrigins,
-                policy =>
-                {
-                    policy.WithOrigins(origins).AllowAnyHeader().AllowAnyMethod();
-                }
+                policy => policy.WithOrigins(origins).AllowAnyHeader().AllowAnyMethod()
             );
         });
 
@@ -84,9 +78,6 @@ public class Startup
 
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+        app.UseEndpoints(endpoints => endpoints.MapControllers());
     }
 }
