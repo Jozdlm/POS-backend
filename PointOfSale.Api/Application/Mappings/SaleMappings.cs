@@ -14,6 +14,17 @@ public class SaleMappings : Profile
 
     public void SaleHeaderMap()
     {
+        CreateMap<Sale, SaleResponse>()
+            .ForMember(dest => dest.customer, opt => opt.MapFrom(src => src.Customer.Name))
+            .ForMember(dest => dest.user, opt => opt.MapFrom(src => src.User.Username))
+            .ForMember(dest => dest.receipt_type, opt => opt.MapFrom(src => src.ReceiptType));
+
+        CreateMap<SaleHeaderDto, Sale>()
+            .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.customer_id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.user_id))
+            .ForMember(dest => dest.ReceiptType, opt => opt.MapFrom(src => src.receipt_type))
+            .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.status_id));
+
         CreateMap<Sale, SaleHeaderApi>()
             .ForMember(dest => dest.date, opt => opt.MapFrom(src => src.DateTime))
             .ForMember(dest => dest.customer_id, opt => opt.MapFrom(src => src.Customer.Id))
