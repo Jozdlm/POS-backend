@@ -107,26 +107,6 @@ public class ProductsController : ControllerBase
         return Ok(new { message = "Producto actualizado correctamente" });
     }
 
-    [HttpDelete("{id:int}")]
-    public async Task<ActionResult> DeleteProduct(int id)
-    {
-        var alreadyExists = await _repository.AlreadyExists(id);
-
-        if (!alreadyExists)
-        {
-            return NotFound();
-        }
-
-        var result = await _repository.Delete(id);
-
-        if (result == 0)
-        {
-            return BadRequest();
-        }
-
-        return Ok(new { message = "Producto eliminado correctamente" });
-    }
-
     [HttpGet("kardex/{id:int}")]
     public async Task<IActionResult> GetProductKardex(int id)
     {
