@@ -10,7 +10,7 @@ public record ProductResponse
     public decimal selling_price { get; init; }
     public string img_url { get; init; } = null!;
     public CategoryResponse category { get; init; } = null!;
-    public bool active { get; init; }
+    public bool is_active { get; init; }
 }
 
 public record ProductDto {
@@ -21,5 +21,5 @@ public record ProductDto {
     public decimal selling_price {get; init;}
     public string img_url {get; init;} = null!;
     public int category_id {get; init;}
-    public bool active {get; init;}   
+    public bool is_active {get; init;}   
 };

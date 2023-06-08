@@ -21,6 +21,7 @@ public class ProductMappings : Profile
             .ForMember(dest => dest.MinStock, opt => opt.MapFrom(src => src.min_stock))
             .ForMember(dest => dest.SellingPrice, opt => opt.MapFrom(src => src.selling_price))
             .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.category_id))
+            .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.is_active))
             .ReverseMap();
 
         CreateMap<Product, ProductResponse>()
@@ -28,7 +29,8 @@ public class ProductMappings : Profile
             .ForMember(dest => dest.img_url, opt => opt.MapFrom(src => src.ImgUrl))
             .ForMember(dest => dest.min_stock, opt => opt.MapFrom(src => src.MinStock))
             .ForMember(dest => dest.selling_price, opt => opt.MapFrom(src => src.SellingPrice))
-            .ForMember(dest => dest.category, opt => opt.MapFrom(src => src.Category));
+            .ForMember(dest => dest.category, opt => opt.MapFrom(src => src.Category))
+            .ForMember(dest => dest.is_active, opt => opt.MapFrom(src => src.IsActive));
     }
 
     public void ProductKardexMap()
