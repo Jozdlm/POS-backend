@@ -4,7 +4,7 @@ using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Domain.Interfaces;
 
-namespace PointOfSale.Api.Controllers.Products;
+namespace PointOfSale.Api.Controllers;
 
 [ApiController]
 [Route("api/products")]

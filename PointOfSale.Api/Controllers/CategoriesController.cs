@@ -4,7 +4,7 @@ using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Domain.Interfaces;
 
-namespace PointOfSale.Api.Controllers.Products;
+namespace PointOfSale.Api.Controllers;
 
 [ApiController]
 [Route("api/products-categories")]
@@ -52,7 +52,7 @@ public class CategoriesController : ControllerBase
             );
         }
 
-        return Ok("Categoría creada con exito");
+        return Ok( new { message = "Categoría creada con exito" });
     }
 
     [HttpPut("{id:int}")]
@@ -72,9 +72,9 @@ public class CategoriesController : ControllerBase
 
         if (result == 0)
         {
-            return BadRequest(
-                "A ocurrido un error al intentar actualizar, comuniquese con sistemas"
-            );
+            return BadRequest(new { 
+                message ="A ocurrido un error al intentar actualizar, comuniquese con sistemas"
+            });
         }
 
         return Ok(new { message = "Categoría editada correctamente" });

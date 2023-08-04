@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Interfaces;
 
-namespace PointOfSale.Api.Features.Sales;
+namespace PointOfSale.Api.Controllers;
 
 [ApiController]
 [Route("api/sales/{saleId:int}/items")]
