@@ -12,20 +12,14 @@ public class ProductsController : ControllerBase
 {
     private readonly IProductRepository _repository;
     private readonly IMapper _mapper;
-    private readonly ISaleItemRepository _saleItemRepository;
-    private readonly IPurchaseItemRepository _purchaseItemRepository;
 
     public ProductsController(
         IProductRepository repository,
-        IMapper mapper,
-        ISaleItemRepository saleItemRepository,
-        IPurchaseItemRepository purchaseItemRepository
+        IMapper mapper
     )
     {
         _repository = repository;
         _mapper = mapper;
-        _saleItemRepository = saleItemRepository;
-        _purchaseItemRepository = purchaseItemRepository;
     }
 
     [HttpGet("")]
@@ -38,7 +32,8 @@ public class ProductsController : ControllerBase
             var filteredProducts = await _repository.FindByName(q);
             productsDto = _mapper.Map<List<ProductResponse>>(filteredProducts);
 
-            return Ok(new {
+            return Ok(new
+            {
                 Status = 200,
                 Data = productsDto,
                 productsDto.Count
@@ -48,7 +43,8 @@ public class ProductsController : ControllerBase
         var products = await _repository.FindAll();
         productsDto = _mapper.Map<List<ProductResponse>>(products);
 
-        return Ok(new {
+        return Ok(new
+        {
             Status = 200,
             Data = productsDto,
             productsDto.Count
@@ -118,18 +114,5 @@ public class ProductsController : ControllerBase
         }
 
         return Ok(new { message = "Producto actualizado correctamente" });
-    }
-
-    [HttpGet("kardex/{id:int}")]
-    public async Task<IActionResult> GetProductKardex(int id)
-    {
-        var saleItems = await _saleItemRepository.FindSaleItemsByProduct(id);
-        var purchaseItems = await _purchaseItemRepository.FindPurchaseItemsByProduct(id);
-
-        var kardexItems = saleItems
-            .Select(saleItem => _mapper.Map<ProductKardex>(saleItem))
-            .Concat(purchaseItems.Select(purchaseItem => _mapper.Map<ProductKardex>(purchaseItem)));
-
-        return Ok(kardexItems);
     }
 }
