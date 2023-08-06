@@ -7,7 +7,7 @@ using PointOfSale.Api.Domain.Interfaces;
 namespace PointOfSale.Api.Controllers;
 
 [ApiController]
-[Route("api/products-categories")]
+[Route("api/categories")]
 public class CategoriesController : ControllerBase
 {
     private readonly ICategoryRepository _categoryRepository;
