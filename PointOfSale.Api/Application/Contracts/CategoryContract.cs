@@ -2,13 +2,13 @@
 
 public record CategoryResponse
 {
-    public int id { get; init; }
-    public string name { get; init; } = null!;
-    public string description { get; init; } = null!;
+    public int Id { get; init; }
+    public required string Name { get; init; }
+    public required string Description { get; init; }
 };
 
 public record CategoryDto
 {
-    public string name { get; init; } = null!;
-    public string description { get; init; } = null!;
+    public required string Name { get; init; }
+    public required string Description { get; init; }
 }
