@@ -19,7 +19,7 @@ public class CategoriesController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
+    [HttpGet("")]
     public async Task<IEnumerable<CategoryResponse>> GetCategories()
     {
         var categories = await _categoryRepository.FindAll();
@@ -39,7 +39,7 @@ public class CategoriesController : ControllerBase
         return _mapper.Map<CategoryResponse>(category);
     }
 
-    [HttpPost]
+    [HttpPost("")]
     public async Task<IActionResult> AddCategory(CategoryDto categoryDto)
     {
         var category = _mapper.Map<ProductCategory>(categoryDto);
@@ -52,7 +52,10 @@ public class CategoriesController : ControllerBase
             );
         }
 
-        return Ok( new { message = "Categoría creada con exito" });
+        return Ok(new
+        {
+            message = "Categoría creada con exito"
+        });
     }
 
     [HttpPut("{id:int}")]
@@ -72,11 +75,15 @@ public class CategoriesController : ControllerBase
 
         if (result == 0)
         {
-            return BadRequest(new { 
-                message ="A ocurrido un error al intentar actualizar, comuniquese con sistemas"
+            return BadRequest(new
+            {
+                message = "A ocurrido un error al intentar actualizar, comuniquese con sistemas"
             });
         }
 
-        return Ok(new { message = "Categoría editada correctamente" });
+        return Ok(new
+        {
+            message = "Categoría editada correctamente"
+        });
     }
 }
