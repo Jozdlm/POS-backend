@@ -47,9 +47,10 @@ public class CategoriesController : ControllerBase
 
         if (result == 0)
         {
-            return BadRequest(
-                "Ah ocurrido un error al intentar crear la categoría, comuniquese con sistemas"
-            );
+            return BadRequest(new
+            {
+                message = "Ah ocurrido un error al intentar crear la categoría, comuniquese con sistemas"
+            });
         }
 
         return Ok(new
