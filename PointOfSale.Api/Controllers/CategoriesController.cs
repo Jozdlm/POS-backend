@@ -20,10 +20,16 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpGet("")]
-    public async Task<IEnumerable<CategoryResponse>> GetCategories()
+    public async Task<ActionResult> GetCategories()
     {
         var categories = await _categoryRepository.FindAll();
-        return _mapper.Map<List<CategoryResponse>>(categories);
+        var categoriesDto = _mapper.Map<List<CategoryResponse>>(categories);
+
+        return Ok(new {
+            Status = 200,
+            Data = categories,
+            categoriesDto.Count
+        });
     }
 
     [HttpGet("{id:int}")]
