@@ -28,18 +28,31 @@ public class ProductsController : ControllerBase
         _purchaseItemRepository = purchaseItemRepository;
     }
 
-    [HttpGet]
-    public async Task<IEnumerable<ProductResponse>> GetProducts(string? q = "")
+    [HttpGet("")]
+    public async Task<ActionResult> GetProducts(string? q = "")
     {
+        List<ProductResponse> productsDto;
+
         if (q != null)
         {
             var filteredProducts = await _repository.FindByName(q);
-            return _mapper.Map<List<ProductResponse>>(filteredProducts);
+            productsDto = _mapper.Map<List<ProductResponse>>(filteredProducts);
+
+            return Ok(new {
+                Status = 200,
+                Data = productsDto,
+                productsDto.Count
+            });
         }
 
         var products = await _repository.FindAll();
+        productsDto = _mapper.Map<List<ProductResponse>>(products);
 
-        return _mapper.Map<List<ProductResponse>>(products);
+        return Ok(new {
+            Status = 200,
+            Data = productsDto,
+            productsDto.Count
+        });
     }
 
     [HttpGet("{category}")]
