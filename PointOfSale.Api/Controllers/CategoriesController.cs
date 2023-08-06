@@ -33,7 +33,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<CategoryResponse>> GetCategory(int id)
+    public async Task<ActionResult> GetCategory(int id)
     {
         var category = await _categoryRepository.FindById(id);
 
@@ -42,7 +42,8 @@ public class CategoriesController : ControllerBase
             return NotFound();
         }
 
-        return _mapper.Map<CategoryResponse>(category);
+        var categoryDto = _mapper.Map<CategoryResponse>(category);
+        return Ok(categoryDto);
     }
 
     [HttpPost("")]
