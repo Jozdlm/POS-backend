@@ -36,11 +36,11 @@ public class ProductRepository : IProductRepository
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Product>> FindByCategory(string categoryName)
+    public async Task<IEnumerable<Product>> FindByCategory(int categoryId)
     {
         return await _dbContext.Products
             .Include(x => x.Category)
-            .Where(x => x.Category.Name == categoryName)
+            .Where(x => x.Category.Id == categoryId)
             .ToListAsync();
     }
 
