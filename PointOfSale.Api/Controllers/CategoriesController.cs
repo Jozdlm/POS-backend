@@ -11,11 +11,13 @@ namespace PointOfSale.Api.Controllers;
 public class CategoriesController : ControllerBase
 {
     private readonly ICategoryRepository _categoryRepository;
+    private readonly IProductRepository _productRepository;
     private readonly IMapper _mapper;
 
-    public CategoriesController(ICategoryRepository categoryRepository, IMapper mapper)
+    public CategoriesController(ICategoryRepository categoryRepository, IProductRepository productRepository, IMapper mapper)
     {
         _categoryRepository = categoryRepository;
+        _productRepository = productRepository;
         _mapper = mapper;
     }
 
@@ -44,6 +46,22 @@ public class CategoriesController : ControllerBase
 
         var categoryDto = _mapper.Map<CategoryResponse>(category);
         return Ok(categoryDto);
+    }
+
+    [HttpGet("{id:int}/products")]
+    public async Task<ActionResult> GetProductsByCategory(int id){
+        var filteredProducts = await _productRepository.FindByCategory(id);
+        var productsDto = _mapper.Map<List<ProductDto>>(filteredProducts);
+
+        if (productsDto.Count == 0) {
+            return NotFound();
+        }
+        
+        return Ok(new {
+            status = 200,
+            Data = productsDto,
+            productsDto.Count
+        });
     }
 
     [HttpPost("")]
