@@ -20,12 +20,6 @@ public class KardexController : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet]
-    public IActionResult Index()
-    {
-        return Ok(new { message = "Hello" });
-    }
-
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetKardexById(int id)
     {
