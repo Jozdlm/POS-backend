@@ -51,13 +51,6 @@ public class ProductsController : ControllerBase
         });
     }
 
-    [HttpGet("{category}")]
-    public async Task<IEnumerable<ProductDto>> GetProductsByCategory(string category)
-    {
-        var filteredProducts = await _repository.FindByCategory(category);
-        return _mapper.Map<List<ProductDto>>(filteredProducts);
-    }
-
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ProductResponse>> GetProduct(int id)
     {
