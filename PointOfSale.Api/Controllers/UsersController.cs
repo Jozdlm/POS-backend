@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PointOfSale.Api.Domain.Interfaces;
 using PointOfSale.Api.Features.Users.Contracts;
 
-namespace PointOfSale.Api.Features.Users;
+namespace PointOfSale.Api.Controllers;
 
 [ApiController]
 [Route("api/users")]
