@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PointOfSale.Api.Infrastructure.Data;
 
-namespace PointOfSale.Api.Features.People;
+namespace PointOfSale.Api.Controllers;
 
 [ApiController]
 [Route("api/suppliers")]

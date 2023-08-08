@@ -4,7 +4,7 @@ using PointOfSale.Api.Application.Contracts;
 using PointOfSale.Api.Domain.Entities;
 using PointOfSale.Api.Features.Sales.Repositories.Interfaces;
 
-namespace PointOfSale.Api.Features.Sales;
+namespace PointOfSale.Api.Controllers;
 
 [ApiController]
 [Route("api/sales")]
