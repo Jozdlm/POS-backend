@@ -11,6 +11,12 @@ public class Startup
 {
     private IConfiguration Configuration { get; }
     private const string DevSpecificOrigins = "_devSpecificOrigins";
+    private readonly string[] _origins = {
+        "http://localhost:4200",
+        "http://localhost:8000",
+        "http://localhost:63345",
+        "http://localhost:63342"
+    };
 
     public Startup(IConfiguration configuration)
     {
@@ -44,17 +50,9 @@ public class Startup
 
         services.AddCors(options =>
         {
-            string[] origins =
-            {
-                "http://localhost:4200",
-                "http://localhost:8000",
-                "http://localhost:63345",
-                "http://localhost:63342"
-            };
-
             options.AddPolicy(
                 name: DevSpecificOrigins,
-                policy => policy.WithOrigins(origins).AllowAnyHeader().AllowAnyMethod()
+                policy => policy.WithOrigins(_origins).AllowAnyHeader().AllowAnyMethod()
             );
         });
 
