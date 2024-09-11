@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PointOfSale.Api.Features.People.Models;
 using PointOfSale.Api.Infrastructure.Data;
 
 namespace PointOfSale.Api.Controllers;
@@ -16,7 +17,7 @@ public class CustomersController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<Models.People>> GetCustomers()
+    public async Task<IEnumerable<People>> GetCustomers()
     {
         return await _dbContext.Person
             .Where(x => x.PersonType == 1)
